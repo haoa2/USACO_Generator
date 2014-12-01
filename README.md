@@ -14,19 +14,19 @@ con un main() y con algunas otras cosas.
 Para utilizar el programa, lo que se debe hacer, es compilarlo primero que nada, 
 después de eso, podemos utilizar el ejecutable de la siguiente forma:
 
- - Linux
+ - #### Linux
     
     ./Ejecutable ID_PERSONAL NOMBRE_DEL_PROGRAMA NOMBRE_ARCHIVO.CPP
 
- - Windows
-    
+ - #### Windows
+
     Ejecutable.exe ID_PERSONAL NOMBRE_DEL_PROGRAMA NOMBRE_ARCHIVO.CPP
 
- - Macintosh
+ - #### Macintosh
 
     ./Ejecutable ID_PERSONAL NOMBRE_DEL_PROGRAMA NOMBRE_ARCHIVO.CPP
 
-## Descripción de las Variables.
+### Descripción de las Variables.
 
  - ID_PERSONAL:             Se refiere al nombre de usuario asignado por la 
                             plataforma en línea de USACO. Por ej. PERSONA3
@@ -42,7 +42,7 @@ después de eso, podemos utilizar el ejecutable de la siguiente forma:
 
 ## Autor
 
-Creado por: **Humberto Alejandro Ortega Alcocer** 
-Contacto: <humbertowoody@gmail.com>
+Creado por: **Humberto Alejandro Ortega Alcocer** <br>
+Contacto: <humbertowoody@gmail.com><br>
 
-    2014 :)
+2014 :)
