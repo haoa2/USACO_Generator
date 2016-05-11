@@ -2,54 +2,107 @@
 
 import sys
 
+JavaData = {
+	'Lang_id' : 'JAVA',
+	'Source Extension':'.java',
+	'Single-Line Comment' : '//',
+	'Multi-Line Comment' : ['/*','*/'],
+	'Libraries' : [],
+	'Constants' : []	
+}
+
+CPPData = {
+	'Lang_id' : 'C++11',
+	'Single-Line Comment' : '//',
+	'Multi-Line Comment' : ['/*','*/'],
+	'Source Extension' : '.cpp',
+	'Library Get' : '#include',
+	'Constant Def' : '#define',
+	'Functions' : {
+		'Main' : 'int main(int argc, char* argv[])'
+	},
+	'Libraries' : ['iostream','vector','cmath','fstream','deque','string','algorithm','cstdio','cstdlib','ctime'],
+	'Constants' : [['BUFFER','1024'],['PI','3.14159265359']]
+}
+
+PythonData = {
+	
+}
+
+FortranData = {
+	
+}
+
+PascalData = {
+	
+}
+
+
+
 class Impresion(object):
-	libraries = ['iostream','vector','cmath','fstream','deque','string','algorithm','cstdio','cstdlib','ctime']
-	constants = [['BUFFER','1024'],['PI','3.14159265359']]
 
-	def generatefile(self):
-		f = open(self.filename+'.cpp','a')
+	def generateUserData(self):
+		file = open(self.filename,'a')
+		file.write(self.data['Multi-Line Comment'][0]+'\n')
+		file.write('HOLA\n')
+		file.write(self.data['Multi-Line Comment'][1]+'\n')
+		file.close()
 
-		# Fill USACO user Data
-		f.write('/*\nID: '+self.id+'\n')
-		f.write('PROG: '+self.prog+'\n')
-		f.write('LANG: C++11\n*/\n')
-
-		# Generate Libraries
-		f.write('\n// Libraries\n')
-		for library in self.libraries:
-			f.write('#include <'+library+'>\n')
-
-		# Generate Constants
-		f.write('\n// Constants\n')
-		for constant in self.constants:
-			f.write('#define '+constant[0]+' '+constant[1]+'\n')
-
-		f.write('\n// Function Templates\n\n')
-		f.write('\n// Main Function\n')
-		f.write('int main(int argc, char* argv[])\n{\n')
-		f.write('\t// Input & Output\n')
-		f.write('\tstd::ofstream fout("'+self.prog+'.out",std::ios::out);\n')
-		f.write('\tstd::ifstream fin("'+self.prog+'.in",std::ios::in);\n')
-		f.write('\n\t// Rest of Main\n\n\n')
-		f.write('\treturn 0; // Exit Success.\n')
-		f.write('}\n\n')
-		f.write('// Functions Implementations\n')
-
-		f.write('\n// Template created by: Humberto Alejandro Ortega Alcocer <humbertowoody@gmail.com>')
+	def generateLibraries(self):
 		pass
 
-	def __init__(self, idprog, prog, filename):
+	def generateConstants(self):
+		pass
+
+	def generatefile(self):
+		# Fill USACO user Data
+		self.generateUserData()
+		# Generate Libraries
+		self.generateLibraries()
+		# Generate Constants
+		self.generateConstants()
+
+	def __init__(self, idprog, prog, filename,lang):
 		self.id = idprog
 		self.prog = prog
-		self.filename = filename
-
+		
+		if (
+			lang == 'c++' or lang == 'C++' or
+			lang == 'cpp' or lang == 'CPP' or
+			lang == 'c' or lang == 'C' or
+			lang == 'c++11' or lang == 'C++11' or
+			lang == 'cpp11' or lang == 'CPP11'
+			):
+			self.data = CPPData
+		elif (
+			lang == 'java' or lang == 'JAVA' or
+			lang == 'Java'
+			):
+			self.data = JavaData
+		elif (
+			lang == 'Python' or lang == 'PYTHON' or
+			lang == 'python'
+			):
+			self.data = PythonData
+		elif (
+			lang == 'Fortran' or lang == 'fortran'
+			):
+			self.data = FortranData
+		elif (
+			lang == 'Pascal' or lang == 'PASCAL'
+			):
+			self.data = PascalData
+		else:
+			raise 'Language error.'
+		self.filename = filename+self.data['Source Extension']
 
 def main(argv):
-	if len(argv) == 3:
+	if len(argv) == 4:
 		print 'ID: ' + argv[0]
 		print 'PROG: ' + argv[1]
+		print 'LANGUAGE: ' + argv[3]
 		print 'Output code file: ' + argv[2]
-		file = Impresion(argv[0],argv[1],argv[2])
+		file = Impresion(argv[0],argv[1],argv[2],argv[3])
 		file.generatefile()
 	else:
 		print 'Error: Not enough arguments!'
