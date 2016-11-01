@@ -21,7 +21,7 @@ CPPData = {
 	'Functions' : {
 		'Main' : 'int main(int argc, char* argv[])'
 	},
-	'Libraries' : ['iostream','vector','cmath','fstream','deque','string','algorithm','cstdio','cstdlib','ctime'],
+	'Libraries' : ['<iostream>','<vector>','<cmath>','<fstream>','<deque>','<string>','<algorithm>','<cstdio>','<cstdlib>','<ctime>'],
 	'Constants' : [['BUFFER','1024'],['PI','3.14159265359']]
 }
 
@@ -44,12 +44,18 @@ class Impresion(object):
 	def generateUserData(self):
 		file = open(self.filename,'a')
 		file.write(self.data['Multi-Line Comment'][0]+'\n')
-		file.write('HOLA\n')
+		file.write('ID: '+self.id+'\n')
+		file.write('PROG: '+self.prog+'\n')
+		file.write('LANG: '+self.data['Lang_id']+'\n')
 		file.write(self.data['Multi-Line Comment'][1]+'\n')
 		file.close()
 
 	def generateLibraries(self):
-		pass
+		file = open(self.filename,'a')
+		file.write(self.data['Single-Line Comment']+' Libraries\n')
+		for library in self.data['Libraries']:
+			file.write(self.data['Library Get']+' '+library+'\n')
+		file.close()
 
 	def generateConstants(self):
 		pass

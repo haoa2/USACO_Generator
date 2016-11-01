@@ -22,10 +22,11 @@ int main(int argc, char *argv[])
 {
     std::string archivo = "NULL.cpp", 
                 id      = "ID_NULA", 
-                prog    = "PROG_NULO";
+                prog    = "PROG_NULO",
+                ext     = ".cpp";
     char opcion;
 
-    if(argc != 4)
+    if(argc != 3)
     {
         std::cout << "Error: Número de parámetros insuficiente." << std::endl;
         ayuda();
@@ -36,7 +37,7 @@ int main(int argc, char *argv[])
 
     id      = argv[1];
     prog    = argv[2];
-    archivo = argv[3];
+    archivo = prog + ext;
 
     std::cout << "Configuración detectada: " << std::endl << std::endl;
 
@@ -101,12 +102,12 @@ void crear_archivo(std::string file,
     fout << "// Función Principal (Main)." << std::endl;
     fout << "int main(int argc, char *argv[])" << std::endl;
     fout << "{" << std::endl;
-    fout << "   std::ifstream fin(\"" << prog << ".in\", std::ios::in );" << std::endl;
-    fout << "   std::ofstream fout(\"" << prog <<  ".out\", std::ios::out );" << std::endl;
+    fout << "\tstd::ifstream fin(\"" << prog << ".in\", std::ios::in );" << std::endl;
+    fout << "\tstd::ofstream fout(\"" << prog <<  ".out\", std::ios::out );" << std::endl;
     fout << std::endl;
-    fout << "   // Lógica del Programa." << std::endl;
+    fout << "\t// Lógica del Programa." << std::endl;
     fout << std::endl;
-    fout << "   return 0;" << std::endl;
+    fout << "\treturn 0;" << std::endl;
     fout << "}" << std::endl;
 
     fout << std::endl << std::endl;
@@ -127,16 +128,13 @@ void ayuda()
     std::cout << "basándose en un template pre-establecido. Se puede utilizar para otros fines," << std::endl;
     std::cout << "pero ya está configurado adecuadamente." << std::endl << std::endl;
     std::cout << "Uso:" << std::endl << std::endl;
-    std::cout << "\t ./Generador ID_PERSONAL NOMBRE_DEL_PROGRAMA NOMBRE_ARCHIVO.CPP" << std::endl << std::endl;
+    std::cout << "\t ./Generador ID_PERSONAL NOMBRE_DEL_PROGRAMA" << std::endl << std::endl;
     std::cout << "Parámetros:" << std::endl << std::endl;
     std::cout << "\t-ID_PERSONAL            Se refiere al ID de la persona que responde el problema planteado" << std::endl;
     std::cout << "\t                        y debe ser el nombre que se muestra en la página." << std::endl << std::endl;
     std::cout << "\t-NOMBRE_DEL_PROGRAMA    Se refiere a la clave única del problema que se resolverá." << std::endl;
     std::cout << "\t                        Nótese que éste nombre NO SERÁ el nombre del Archivo resultante." << std::endl << std::endl;
-    std::cout << "\t-NOMBRE_ARCHIVO.CPP     Es el nombre del archivo a generar. Se deberá especificar con todo" << std::endl;
-    std::cout << "\t                        y extensión (.cpp), porque el programa no la añadirá en caso de no" << std::endl;
-    std::cout << "\t                        existir." << std::endl << std::endl;
     std::cout << "Programa hecho por: Humberto Alejandro Ortega Alcocer. 2014" << std::endl;
-    std::cout << "           \"Después de la sección 4, que Dios se ampare de tu alma.\"" << std::endl;
-    std::cout << "                                      -HumbertoWoody" << std::endl << std::endl;
+    std::cout << "\t        \"Después de la sección 4, que Dios se ampare de tu alma.\"" << std::endl;
+    std::cout << "\t                                   -HumbertoWoody" << std::endl << std::endl;
 }
